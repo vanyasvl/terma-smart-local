@@ -1,0 +1,6 @@
+*.cap
+*.apk
+*.xapk
+jadx*
+__pycache__
+.claude
