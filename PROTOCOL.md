@@ -150,7 +150,7 @@ All fields except `serial` are optional. Types are the Kotlin signatures.
 | `isHeating` | Int 0/1 | element actively energised |
 | `heatingCoefficient` | Double 0..1 | mirrors `zoneWeight` |
 | `manualMode` | Int | `0`/`1`/`2` = Manual / ManualWithTimer / ManualScheduleAware. Telemetry also reports `3` ≈ "no manual override / following schedule" |
-| `powerUsage` | Double | kW, instantaneous |
+| `powerUsage` | Double | kWh, cumulative energy |
 | `schedule` | String | quoted bracketed list — see §2.7 |
 
 Some response/configuration fields the device returns but the app's

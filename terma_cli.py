@@ -165,7 +165,7 @@ def _print_status(t: dict, verbose: bool = False) -> None:
     print()
     print(_bold("Power"))
     _row("heating level", _fmt_percent_frac(t.get("heatingCoefficient")))
-    _row("power usage", f"{_c('yellow', t.get('powerUsage'))} kW")
+    _row("power usage", f"{_c('yellow', t.get('powerUsage'))} kWh")
     _row("battery", f"{_c('yellow', t.get('batteryLevel'))}%")
 
     print()
@@ -247,18 +247,20 @@ def _print_cloud_status(
         print(_bold("Zone"))
         # standBy=True ⇒ heater idle (in standby); standBy=False ⇒ active.
         _row("standby", _onoff(1 if zone.get("standBy") else 0))
-        set_t = zone.get("setTemperature")
-        if set_t is not None:
+        for label, key in (
+            ("set temperature", "setTemperature"),
+            ("holiday mode", "holidayModeTemperature"),
+            ("smart localization", "smartLocalizationTemperature"),
+        ):
+            v = zone.get(key)
+            if v is None:
+                continue
             try:
-                _row("set temperature",
-                     f"{_c('yellow', f'{k_to_c(set_t):.2f}')} °C  "
-                     f"{_c('dim', f'({set_t} K)')}")
+                _row(label,
+                     f"{_c('yellow', f'{k_to_c(v):.2f}')} °C  "
+                     f"{_c('dim', f'({v} K)')}")
             except Exception:
-                _row("set temperature", str(set_t))
-        for k in ("holidayModeTemperature", "smartLocalizationTemperature"):
-            v = zone.get(k)
-            if v is not None:
-                _row(k, _c("yellow", v))
+                _row(label, str(v))
 
     if not t:
         return
@@ -283,7 +285,7 @@ def _print_cloud_status(
     print()
     print(_bold("Power"))
     _row("heating level", _fmt_percent_frac(t.get("heatingCoefficient")))
-    _row("power usage", f"{_c('yellow', t.get('powerUsage'))} kW")
+    _row("power usage", f"{_c('yellow', t.get('powerUsage'))} kWh")
     _row("battery", f"{_c('yellow', t.get('batteryLevel'))}%")
 
     print()
