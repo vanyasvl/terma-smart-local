@@ -1,9 +1,10 @@
 {
   "domain": "terma",
   "name": "Terma Smart",
-  "codeowners": ["@sid"],
+  "codeowners": ["@vanyasvl"],
   "config_flow": true,
-  "documentation": "https://github.com/someone/terma",
+  "documentation": "https://github.com/vanyasvl/terma-smart-local",
+  "issue_tracker": "https://github.com/vanyasvl/terma-smart-local/issues",
   "iot_class": "local_polling",
   "manifest_version": 2,
   "version": "1.0.0",
