@@ -26,5 +26,14 @@
       "already_configured": "Device is already configured",
       "device_added": "Device added to the existing Terma integration"
     }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "state": {
+          "auto": "Scheduled"
+        }
+      }
+    }
   }
 }

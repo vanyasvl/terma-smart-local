@@ -7,15 +7,14 @@
 
 Repo: <https://github.com/vanyasvl/terma-smart-local>
 
-Local-network control for **Terma Smart** electric towel-rail thermostats
-(`com.termaconnect.mobile` v1.32 firmware family). Reverse-engineered from
-the official Android app — no cloud account, no third-party services at
-runtime. Your thermostat talks JSON over TCP on the same Wi-Fi as Home
-Assistant and that's it.
+Local-network control for **Terma Smart** electric towel-rail thermostats.
+Reverse-engineered from the official Android app — no cloud account,
+no third-party services at runtime. Your thermostat talks JSON over TCP
+on the same Wi-Fi as Home Assistant and that's it.
 
 ## Highlights
 
-- **Climate entity** with HEAT / AUTO (schedule) / OFF modes, native target
+- **Climate entity** with Heat / Scheduled / Off modes, native target
   temperature slider, and live heating-action status.
 - **Zeroconf auto-discovery** — devices announcing `_terma._tcp.local` are
   offered for setup automatically.
@@ -95,11 +94,16 @@ and rated heating power (`powerCapabilities`) can be *written* to the
 device but the device **does not echo them back** in its telemetry. The
 integration handles this two ways:
 
-- **While in HEAT (`manualMode ∈ {0,1,2}`)**: the integration caches the
-  value last written and surfaces it as `target_temperature`. The cache is
-  persisted across HA restarts via `RestoreEntity`.
-- **While in AUTO (`manualMode == 3`)**: the integration decodes the
-  device's weekly `schedule` field and returns the active entry's setpoint.
+- **While in Heat (`HVACMode.HEAT`, `manualMode ∈ {0,1,2}`)**: the
+  integration caches the value last written and surfaces it as
+  `target_temperature`. The cache is persisted across HA restarts via
+  `RestoreEntity`.
+- **While in Scheduled (`HVACMode.AUTO`, `manualMode == 3`)**: the
+  integration decodes the device's weekly `schedule` field and returns the
+  active entry's setpoint.
+
+Note: "Scheduled" is the display label for `HVACMode.AUTO` — service calls
+and automations should still use `auto` as the HVAC mode value.
 
 Caveat: if you change the setpoint from the physical thermostat while HA is
 offline, the restored cache is stale. Nudging the slider in HA reconciles

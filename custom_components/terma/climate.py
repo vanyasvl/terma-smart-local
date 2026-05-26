@@ -64,6 +64,7 @@ class TermaClimate(TermaBaseEntity, ClimateEntity, RestoreEntity):
 
     _attr_name = None
     _attr_icon = "mdi:radiator"
+    _attr_translation_key = "thermostat"
     _attr_temperature_unit = UnitOfTemperature.CELSIUS
     _attr_target_temperature_step = TEMP_STEP_C
     _attr_min_temp = MIN_TEMP_C
