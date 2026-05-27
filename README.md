@@ -74,7 +74,6 @@ Polling interval is fixed at **30 seconds** (see `const.py`).
 | `sensor.*_heater_temperature` | Heating element temperature (°C) | `heaterTemperature` |
 | `sensor.*_humidity` | Humidity (%) — disabled by default | `humidity` |
 | `sensor.*_power_usage` | Cumulative energy (Wh) | `powerUsage` |
-| `sensor.*_heating_level` | Heating level (%) | `heatingCoefficient` |
 | `switch.*_power` | Power on/off | `isEnabled` |
 | `switch.*_dry` | Dryer (towel-boost) toggle | `isDryerOn` |
 | `switch.*_parental_lock` | Child lock | `isParentalControlOn` |

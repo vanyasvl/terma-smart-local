@@ -70,15 +70,6 @@ SENSOR_DESCRIPTIONS: tuple[TermaSensorEntityDescription, ...] = (
         telemetry_key="powerUsage",
         transform=lambda x: x * 1000,
     ),
-    TermaSensorEntityDescription(
-        key="heating_coefficient",
-        name="Heating Level",
-        native_unit_of_measurement=PERCENTAGE,
-        state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:heat-wave",
-        telemetry_key="heatingCoefficient",
-        transform=lambda x: x * 100,
-    ),
 )
 
 
